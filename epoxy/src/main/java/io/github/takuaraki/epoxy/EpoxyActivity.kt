@@ -14,10 +14,9 @@ class EpoxyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_epoxy)
 
-        val textController = TextController()
-        textController.setData(listOf("Alice", "Bob"))
-        textController.adapter
-        binding.recyclerView.adapter = textController.adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.setController(TextController().apply {
+            setData(listOf("Alice", "Bob"))
+        })
     }
 }
