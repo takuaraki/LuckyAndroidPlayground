@@ -1,1 +1,1 @@
-include ':app', ':epoxy'
+include ':app', ':epoxy', ':camerax'
