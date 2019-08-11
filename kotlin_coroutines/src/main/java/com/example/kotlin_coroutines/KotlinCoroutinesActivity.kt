@@ -14,11 +14,17 @@ class KotlinCoroutinesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin_coroutines)
 
         fetchButton.setOnClickListener {
-            GlobalScope.launch { // launch a new coroutine in background and continue
-                delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
-                println("World!") // print after delay
-            }
-            println("Hello,") // main thread continues while coroutine is delayed
+            firstCoroutine()
         }
+    }
+
+    private fun firstCoroutine() {
+        // GlobalScopeのcoroutineはアプリケーションと同じ生存期間をもつ
+        GlobalScope.launch {
+            // launch a new coroutine in background and continue
+            delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
+            println("World!") // print after delay
+        }
+        println("Hello,") // main thread continues while coroutine is delayed
     }
 }
