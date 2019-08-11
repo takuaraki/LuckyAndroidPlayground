@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.activity_kotlin_coroutines.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class KotlinCoroutinesActivity : AppCompatActivity() {
 
@@ -14,8 +15,30 @@ class KotlinCoroutinesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin_coroutines)
 
         fetchButton.setOnClickListener {
-            firstCoroutine()
+            blockingAndNonBlocking2()
         }
+    }
+
+    private fun blockingAndNonBlocking2() = runBlocking {
+        GlobalScope.launch {
+            delay(1000)
+            println("World!")
+        }
+        println("Hello,")
+        delay(2000)
+        println("Hoge")
+    }
+
+    private fun blockingAndNonBlocking() {
+        GlobalScope.launch {
+            delay(1000)
+            println("World!")
+        }
+        println("Hello,")
+        runBlocking {
+            delay(2000)
+        }
+        println("Hoge")
     }
 
     private fun firstCoroutine() {
