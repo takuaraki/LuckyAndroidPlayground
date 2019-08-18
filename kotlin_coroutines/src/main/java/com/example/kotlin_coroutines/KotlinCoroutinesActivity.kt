@@ -15,10 +15,23 @@ class KotlinCoroutinesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin_coroutines)
 
         fetchButton.setOnClickListener {
-            blockingAndNonBlocking2()
+            waitingForAJob()
         }
     }
 
+    /**
+     * https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/basics.md#waiting-for-a-job
+     *
+     * Job#joinが合流点的なイメージ？
+     */
+    private fun waitingForAJob() = runBlocking {
+        val job = GlobalScope.launch {
+            delay(1000)
+            println("World!!")
+        } // launchの戻り値はJob
+        println("Hello,")
+        job.join() // jobが終わるまで待つ
+    }
 
     /**
      * https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/basics.md#bridging-blocking-and-non-blocking-worlds
