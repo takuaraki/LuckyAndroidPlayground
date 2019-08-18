@@ -19,6 +19,13 @@ class KotlinCoroutinesActivity : AppCompatActivity() {
         }
     }
 
+
+    /**
+     * https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/basics.md#bridging-blocking-and-non-blocking-worlds
+     *
+     * runBlockingは現在のスレッドをブロックして動く
+     * また、runBlockingの戻り値はTなので結果を受け取ることもできる。
+     */
     private fun blockingAndNonBlocking2() = runBlocking {
         GlobalScope.launch {
             delay(1000)
