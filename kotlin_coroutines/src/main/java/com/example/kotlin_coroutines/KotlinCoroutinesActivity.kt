@@ -3,10 +3,7 @@ package com.example.kotlin_coroutines
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_kotlin_coroutines.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 class KotlinCoroutinesActivity : AppCompatActivity() {
 
@@ -15,8 +12,42 @@ class KotlinCoroutinesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin_coroutines)
 
         fetchButton.setOnClickListener {
-            structuredConcurrency()
+            scopeBuilder()
         }
+    }
+
+    /**
+     * https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/basics.md#scope-builder
+     *
+     * coroutineScopeでもrunBlockingみたいにcoroutine scopeを作れる
+     * coroutineScopeは現在のスレッドをブロックしない（よくわからん）
+     *
+     * 結果の予想（実行前に予想してみた）
+     * > Task from coroutine scope
+     * > Task from runBlocking
+     * > Task from nested launch
+     * > Coroutine scope is over
+     *
+     * 結果: 予想通りの出力
+     */
+    private fun scopeBuilder() = runBlocking {
+        launch {
+            delay(200L)
+            println("Task from runBlocking")
+        }
+
+        coroutineScope { // これでCoroutineScopeができる。現在のスレッドはブロックしない
+            // ネストされたlaunchブロック
+            launch {
+                delay(500L)
+                println("Task from nested launch")
+            }
+
+            delay(100L)
+            println("Task from coroutine scope") // これはネストされたlaunchブロックよりも先に実行される
+        }
+
+        println("Coroutine scope is over") // これはネストされたlaunchブロックが終わるまで実行されない
     }
 
     /**
