@@ -24,6 +24,7 @@ class KotlinCoroutinesActivity : AppCompatActivity() {
      *
      * concurrency: 並行性。Go言語にConcurrencyというのがあるらしい。関係あるかも。
      * スレッドを切るみたいに特定の操作をコルーチンとして切り出せる？
+     * GlobalScope.launchは使わんくていい。
      */
     private fun structuredConcurrency() = runBlocking {
         launch { // runBlockingのスコープ内で（よくわからん）新しくコルーチンを起動する
