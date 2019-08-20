@@ -15,8 +15,24 @@ class KotlinCoroutinesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin_coroutines)
 
         fetchButton.setOnClickListener {
-            waitingForAJob()
+            structuredConcurrency()
         }
+    }
+
+    /**
+     * https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/basics.md#structured-concurrency
+     *
+     * concurrency: 並行性。Go言語にConcurrencyというのがあるらしい。関係あるかも。
+     * スレッドを切るみたいに特定の操作をコルーチンとして切り出せる？
+     */
+    private fun structuredConcurrency() = runBlocking {
+        launch { // runBlockingのスコープ内で（よくわからん）新しくコルーチンを起動する
+            delay(1000L)
+            // これはちゃんと実行される。
+            // runBlockingはこのlaunchでつくったコルーチンが終わるまでは終わらない。
+            println("World!")
+        }
+        println("Hello,")
     }
 
     /**
