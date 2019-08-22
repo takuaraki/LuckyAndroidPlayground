@@ -12,8 +12,25 @@ class KotlinCoroutinesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_kotlin_coroutines)
 
         fetchButton.setOnClickListener {
-            scopeBuilder()
+            extractFunctionRefactoring()
         }
+    }
+
+    /**
+     * https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/basics.md#extract-function-refactoring
+     *
+     * launchの中身を別メソッドに切り出した。
+     * suspending functionの登場。
+     * suspending functionはdelayのような他のsuspending functionを呼び出すことができる。
+     */
+    private fun extractFunctionRefactoring() = runBlocking {
+        launch { doWorld() }
+        println("Hello,")
+    }
+
+    private suspend fun doWorld() {
+        delay(1000L)
+        println("World!")
     }
 
     /**
