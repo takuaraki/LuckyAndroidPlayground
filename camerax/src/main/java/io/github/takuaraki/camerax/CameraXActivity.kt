@@ -50,6 +50,7 @@ class CameraXActivity : AppCompatActivity(), LifecycleOwner {
         }.build()
         val preview = Preview(previewConfig)
         preview.setOnPreviewOutputUpdateListener {
+            // SurfaceTextureのアップデートのためにre-addが必要らしい
             val parent = viewFinder.parent as ViewGroup
             parent.removeView(viewFinder)
             parent.addView(viewFinder, 0)
