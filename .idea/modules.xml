@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/LuckyAndroidPlayground.iml" filepath="$PROJECT_DIR$/LuckyAndroidPlayground.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/camerax/camerax.iml" filepath="$PROJECT_DIR$/camerax/camerax.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camerax_opengl/camerax_opengl.iml" filepath="$PROJECT_DIR$/camerax_opengl/camerax_opengl.iml" />
       <module fileurl="file://$PROJECT_DIR$/epoxy/epoxy.iml" filepath="$PROJECT_DIR$/epoxy/epoxy.iml" />
       <module fileurl="file://$PROJECT_DIR$/kotlin_coroutines/kotlin_coroutines.iml" filepath="$PROJECT_DIR$/kotlin_coroutines/kotlin_coroutines.iml" />
     </modules>

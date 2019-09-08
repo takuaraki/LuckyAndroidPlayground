@@ -1,1 +1,1 @@
-include ':app', ':epoxy', ':camerax', ':kotlin_coroutines'
+include ':app', ':epoxy', ':camerax', ':kotlin_coroutines', ':camerax_opengl'
