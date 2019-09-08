@@ -75,7 +75,7 @@ class CameraXActivity : AppCompatActivity(), LifecycleOwner {
                             Log.d("CameraXApp", msg)
                         }
 
-                        override fun onError(useCaseError: ImageCapture.UseCaseError, message: String, cause: Throwable?) {
+                        override fun onError(useCaseError: ImageCapture.ImageCaptureError, message: String, cause: Throwable?) {
                             val msg = "Photo capture failed: $message"
                             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                             Log.e("CameraXApp", msg)
